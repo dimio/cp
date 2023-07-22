@@ -119,8 +119,7 @@ const generateLink = (mode) => {
 
 const generateAppIcons = (url) => {
     const urlMaxLen = new Map();
-    // urlMaxLen.set("qrcode", 2_610);
-    urlMaxLen.set("qrcode", 26);
+    urlMaxLen.set("qrcode", 2_610);
     urlMaxLen.set("reddit", 10_000);
     urlMaxLen.set("twitter", 4_088);
     urlMaxLen.set("slack", 4_088);
