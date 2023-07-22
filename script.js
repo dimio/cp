@@ -110,7 +110,8 @@ const generateLink = (mode) => {
         }
         const url = buildUrl(base64, mode);
         statsEl.innerHTML = `Data length: ${data.length} | Link length: ${url.length} ${generateAppIcons(url)} 
-            | Compression ratio: ${Math.round((100 * url.length) / data.length)}%`;
+            | Compression ratio: ${url.length < data.length ? Math.round((100 * url.length) / data.length)
+            : '0'}%`;
 
         showCopyBar(url);
     });
