@@ -109,13 +109,31 @@ const generateLink = (mode) => {
             return;
         }
         const url = buildUrl(base64, mode);
-        statsEl.innerHTML = `Data length: ${data.length} |  Link length: ${url.length} | Compression ratio: ${Math.round(
-            (100 * url.length) / data.length
-        )}%`;
+        statsEl.innerHTML = `Data length: ${data.length} | Link length: ${url.length} ${generateAppIcons(url)} 
+            | Compression ratio: ${Math.round((100 * url.length) / data.length)}%`;
 
         showCopyBar(url);
     });
 };
+
+const generateAppIcons = (url) => {
+    const urlMaxLen = new Map();
+    // urlMaxLen.set("qrcode", 2_610);
+    urlMaxLen.set("qrcode", 26);
+    urlMaxLen.set("reddit", 10_000);
+    urlMaxLen.set("twitter", 4_088);
+    urlMaxLen.set("slack", 4_088);
+    urlMaxLen.set("bitly", 2_048);
+    const icons = [];
+    for (let [iconName, maxLen] of urlMaxLen.entries()) {
+        icons.push(`
+            <span class="icon-${iconName} ${url.length > maxLen ? 'url-too-long' : ''}"
+            title="Link length for ${iconName} is ${url.length > maxLen ? `too long
+Max length: ${maxLen}` : 'ok'}"></span>
+        `);
+    }
+    return icons.join(" ");
+}
 
 // Open the "Copy" bar and select the content
 const showCopyBar = (dataToCopy) => {
