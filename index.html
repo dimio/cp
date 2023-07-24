@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-        <title>NoPaste - No-database paste service</title>
+        <title>DoPaste - No-database paste service</title>
         <link
             rel="stylesheet"
             type="text/css"
@@ -21,14 +21,15 @@ npm/microtip@0.2.2/microtip.min.css
         <link rel="stylesheet" href="style.css" />
         <link href="favicon.ico" rel="icon" type="image/x-icon" />
         <link rel="canonical" href="https://nopaste.boris.sh/" />
+        <link rel="alternate" href="https://dopaste.dimio.org/" />
         <meta
             name="description"
             property="og:description"
-            content="NoPaste is a client-side paste service which works with no database, and no back-end code. The data is stored entirely in the links and nowhere else"
+            content="DoPaste is a client-side paste service which works with no database, and no back-end code. The data is stored entirely in the links and nowhere else"
         />
-        <meta property="og:title" content="NoPaste - No-database paste service" />
-        <meta property="og:image" content="https://cdn.jsdelivr.net/gh/bokub/nopaste@images/logo.png" />
-        <meta property="og:url" content="https://nopaste.boris.sh/" />
+        <meta property="og:title" content="DoPaste - No-database paste service" />
+        <meta property="og:image" content="https://cdn.jsdelivr.net/gh/dimio/dopaste@images/dopaste-logo.png" />
+        <meta property="og:url" content="https://dopaste.dimio.org/" />
         <meta property="og:type" content="website" />
     </head>
     <body class="m-0">
@@ -41,6 +42,7 @@ npm/microtip@0.2.2/microtip.min.css
         <div id="copy" class="container-fluid hidden shadow-bottom hide-readonly">
             <div class="row my-1">
                 <div class="col my-1">
+                    <label for="copy-link"></label>
                     <input type="text" value="copy me" id="copy-link" class="px-2" onclick="this.setSelectionRange(0, this.value.length)" />
                 </div>
                 <div class="col-auto my-1">
@@ -54,23 +56,23 @@ npm/microtip@0.2.2/microtip.min.css
         <div id="controls" class="container-fluid shadow-bottom hide-readonly">
             <div class="row align-items-center justify-content-end my-1">
                 <div class="col-auto mb-1">
-                    <h1 class="my-0"><span>{</span> NoPaste <span>}</span></h1>
+                    <h1 class="my-0"><span>{</span> DoPaste <span>}</span></h1>
                 </div>
                 <div class="col-auto">
                     <a
                         href="javascript:void(0)"
                         class="mx-3"
-                        aria-label="Click to know more about NoPaste"
+                        aria-label="Click to know more about DoPaste"
                         data-microtip-position="bottom"
                         role="tooltip"
                         data-micromodal-trigger="description-modal"
                         >About</a
                     >
-                    <a href="https://github.com/bokub/nopaste" rel="noopener" target="_blank" class="mx-3">Source</a>
+                    <a href="https://github.com/dimio/dopaste" rel="noopener" target="_blank" class="mx-3">Source</a>
                 </div>
                 <div class="col"></div>
                 <div class="col-auto my-1">
-                    <select id="language"></select>
+                    <label for="language"></label><select id="language"></select>
                 </div>
                 <div class="col-auto">
                     <button
@@ -79,7 +81,7 @@ npm/microtip@0.2.2/microtip.min.css
                         id="enable-line-wrapping"
                         aria-label="Enable line wrapping"
                         data-microtip-position="bottom"
-                        role="tooltip"
+                        role="option"
                     >
                         <span class="icon-notes"></span>
                     </button>
@@ -89,7 +91,7 @@ npm/microtip@0.2.2/microtip.min.css
                         id="disable-line-wrapping"
                         aria-label="Disable line wrapping"
                         data-microtip-position="bottom"
-                        role="tooltip"
+                        role="option"
                         class="hidden"
                     >
                         <span class="icon-wrap-text"></span>
@@ -111,7 +113,7 @@ npm/microtip@0.2.2/microtip.min.css
         <footer id="footer" class="shadow-top container-fluid">
             <div class="row my-1">
                 <div class="col mono hide-readonly" id="stats">Length: 0 | Lines: 1</div>
-                <div class="col mono show-readonly">Powered by NoPaste</div>
+                <div class="col mono show-readonly">Powered by DoPaste</div>
                 <div class="col-auto mono show-readonly">
                     <a href="javascript:void(0)" onclick="openInNewTab()">
                         <span class="icon-edit"></span>
@@ -124,31 +126,36 @@ npm/microtip@0.2.2/microtip.min.css
             <div tabindex="-1" class="modal-overlay">
                 <div role="dialog" class="modal-content shadow-bottom p-3 m-3">
                     <div class="modal-close" data-micromodal-close><span class="icon-close"></span></div>
-                    <h2 class="mt-0">What is NoPaste?</h2>
+                    <h2 class="mt-0">What is DoPaste?</h2>
 
-                    <span class="pink">NoPaste</span> is an open-source website similar to Pastebin where you can store any piece of code,
+                    <span class="pink">DoPaste</span> is an open-source website similar to Pastebin where you can store any piece of code,
                     and generate links for easy sharing<br /><br />
 
-                    However, what makes NoPaste special is that it works with <span class="pink">no database</span>, and
+                    However, what makes DoPaste special is that it works with <span class="pink">no database</span>, and
                     <span class="pink">no back-end code</span>.<br />
                     Instead, the data is compressed and <span class="pink">stored entirely in the link</span> that you share, nowhere else!
 
                     <h3>Because of this design:</h3>
-                    🗑️ Your data <span class="pink">cannot be deleted</span> from NoPaste<br />
+                    🗑️ Your data <span class="pink">cannot be deleted</span> from DoPaste<br />
                     🔞 Your data <span class="pink">cannot be censored</span><br />
-                    👁️ The server hosting NoPaste (or any clone of it) <span class="pink">cannot read or access</span> your data<br />
+                    👁️ The server hosting DoPaste / NoPaste (or any clone of it) <span class="pink">cannot read or access</span> your data<br />
                     ⏳ Your data will be accessible <span class="pink">forever</span> (as long as you have the link)<br />
-                    🔀 You can access your data on <span class="pink">every NoPaste clone</span>, including
+                    🔀 You can access your data on <span class="pink">every DoPaste / NoPaste clone</span>, including
                     <a href="https://github.com/bokub/nopaste/wiki/Deploy-your-own-version-of-NoPaste" rel="noopener" target="_blank"
                         >your own</a
                     ><br />
                     🔍 Google <span class="pink">will not index</span> your data, even if your link is public<br />
                     <br />
                     If you want to know more, you can find more information on
-                    <a href="https://github.com/bokub/nopaste" rel="noopener" target="_blank" class="pink">GitHub</a>
+                    <a href="https://github.com/dimio/dopaste" rel="noopener" target="_blank" class="pink">GitHub</a>
                     <div class="additional-info">
-                        Note: NoPaste is an improved version of Topaz's
-                        <a href="https://topaz.github.io/paste" rel="noopener" target="_blank">Paste</a>
+                        Notes:
+                        <ul>
+                            <li>DoPaste is an improved version of Bokub's
+                                <a href="https://github.com/bokub/nopaste" rel="noopener" target="_blank">NoPaste</a></li>
+                            <li>NoPaste is an improved version of Topaz's
+                                <a href="https://topaz.github.io/paste" rel="noopener" target="_blank">Paste</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -157,7 +164,7 @@ npm/microtip@0.2.2/microtip.min.css
             <div tabindex="-1" class="modal-overlay">
                 <div role="dialog" class="modal-content shadow-bottom p-3 m-3">
                     <div class="modal-close" data-micromodal-close><span class="icon-close"></span></div>
-                    NoPaste cannot decompress the URL<br /><br />
+                    DoPaste cannot decompress the URL<br /><br />
                     It's possible that you clicked on an invalid link<br /><br />
                     Sorry about that
                 </div>
@@ -167,7 +174,8 @@ npm/microtip@0.2.2/microtip.min.css
             <div tabindex="-1" class="modal-overlay">
                 <div role="dialog" class="modal-content shadow-bottom p-3 m-3">
                     <div class="modal-close" data-micromodal-close><span class="icon-close"></span></div>
-                    NoPaste cannot load resources<br /><br />
+                    DoPaste cannot load resources<br /><br />
+                    Try to reload this page<br /><br />
                     Sorry about that
                 </div>
             </div>
