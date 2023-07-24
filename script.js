@@ -48,7 +48,7 @@ const initLangSelector = () => {
             const language = e.data || { mime: null, mode: null };
             editor.setOption('mode', language.mime);
             CodeMirror.autoLoadMode(editor, language.mode);
-            document.title = e.text && e.text !== 'Plain Text' ? `NoPaste - ${e.text} code snippet` : 'NoPaste';
+            document.title = e.text && e.text !== 'Plain Text' ? `DoPaste - ${e.text} code snippet` : 'DoPaste';
         },
     });
 
@@ -187,11 +187,11 @@ const buildUrl = (rawData, mode) => {
     const query = shorten('Plain Text') === select.selected() ? '' : `?l=${encodeURIComponent(select.selected())}`;
     const url = base + query + '#' + rawData;
     if (mode === 'markdown') {
-        return `[NoPaste snippet](${url})`;
+        return `[DoPaste snippet](${url})`;
     }
     if (mode === 'iframe') {
         const height = editor['doc'].height + 45;
-        return `<iframe width="100%" height="${height}" frameborder="0" src="${url}"></iframe>`;
+        return `<iframe width="100%" height="${height}" style="border-style: none" src="${url}"></iframe>`;
     }
     return url;
 };
