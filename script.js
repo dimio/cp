@@ -112,29 +112,28 @@ const initModals = () => {
 };
 
 const generateLink = (mode) => {
-    const data = editor.getValue();
-    compress(data, (base64, err) => {
+    const data = editor.getValue(0);
+    compress(data, async (base64, err) => {
         if (err) {
             alert('Failed to compress data: ' + err);
             return;
         }
         const url = buildUrl(base64, mode);
-        generateAppIcons(url.length).then(icons => {
-            statsEl.innerHTML = `Data length: ${data.length} | Link length: ${url.length} ${icons}
-                | Compression ratio: ${url.length < data.length ? Math.round((100 * url.length) / data.length)
-                : '0'}%`;
-        })
+        statsEl.innerHTML = `Data length: ${data.length}
+                | Link length: ${url.length} ${await generateShareIcons(url.length)}
+                | Compression ratio:
+                ${url.length < data.length ? Math.round((100 * url.length) / data.length) : '0'}%`;
 
         showCopyBar(url);
     });
 };
 
-const generateAppIcons = (urlLength) => {
-    return appShareSettings
+const generateShareIcons = async (urlLength) => {
+    return await appShareSettings
         .then(shareSettings => {
             const icons = [];
             for (const [share, settings] of Object.entries(shareSettings.share)) {
-                const maxLen = settings.max_chars;
+                const maxLen = settings['max_chars'];
                 icons.push(`
                     <span class="icon-${share} ${urlLength > maxLen ? 'url-too-long' : ''}"
                     title="Link length for ${settings.name} is ${urlLength > maxLen ? `too long\n`
@@ -143,7 +142,9 @@ const generateAppIcons = (urlLength) => {
             }
             return icons.join(' ');
         })
-        .catch(() => {return ''});
+        .catch(() => {
+            return ''
+        });
 }
 
 // Open the "Copy" bar and select the content
