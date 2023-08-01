@@ -8,7 +8,7 @@ const MODE_REGEXP = /^https:\/\/cdn\.jsdelivr.net\/npm\/codemirror@.+?\/mode\//;
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
     '/',
-    './resources',
+    'resources/app-share-settings.json',
     'script.js',
     'style.css',
     'favicon.ico',
