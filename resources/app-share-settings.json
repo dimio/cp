@@ -1,0 +1,24 @@
+{
+  "share": {
+    "qrcode": {
+      "name": "QR Code",
+      "max_chars": 2160
+    },
+    "reddit": {
+      "name": "Reddit",
+      "max_chars": 10000
+    },
+    "twitter": {
+      "name": "Twitter",
+      "max_chars": 4088
+    },
+    "slack": {
+      "name": "Slack",
+      "max_chars": 4088
+    },
+    "bit_ly": {
+      "name": "Bit.ly",
+      "max_chars": 2048
+    }
+  }
+}

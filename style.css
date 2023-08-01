@@ -220,7 +220,7 @@ button:hover {
     font-size: 21px;
 }
 .icon-edit, .icon-qrcode, .icon-reddit, .icon-twitter,
-.icon-slack, .icon-bitly {
+.icon-slack, .icon-bit_ly {
     font-size: 14px;
 }
 
@@ -248,6 +248,6 @@ button:hover {
 .icon-slack:before {
     content: "\e904";
 }
-.icon-bitly:before {
+.icon-bit_ly:before {
     content: "\e905";
 }

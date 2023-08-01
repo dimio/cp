@@ -5,8 +5,12 @@ let editor = null;
 let select = null;
 let clipboard = null;
 let statsEl = null;
+var appShareSettings = null
 
 const init = () => {
+    Object.entries({
+        'appShareSettings': 'app-share-settings.json',
+    }).forEach(([varName, resource]) => this[varName] = loadResource(resource))
     handleLegacyUrl();
     initCodeEditor();
     initLangSelector();
@@ -115,30 +119,31 @@ const generateLink = (mode) => {
             return;
         }
         const url = buildUrl(base64, mode);
-        statsEl.innerHTML = `Data length: ${data.length} | Link length: ${url.length} ${generateAppIcons(url)} 
-            | Compression ratio: ${url.length < data.length ? Math.round((100 * url.length) / data.length)
-            : '0'}%`;
+        generateAppIcons(url.length).then(icons => {
+            statsEl.innerHTML = `Data length: ${data.length} | Link length: ${url.length} ${icons}
+                | Compression ratio: ${url.length < data.length ? Math.round((100 * url.length) / data.length)
+                : '0'}%`;
+        })
 
         showCopyBar(url);
     });
 };
 
-const generateAppIcons = (url) => {
-    const urlMaxLen = new Map();
-    urlMaxLen.set("qrcode", 2_610);
-    urlMaxLen.set("reddit", 10_000);
-    urlMaxLen.set("twitter", 4_088);
-    urlMaxLen.set("slack", 4_088);
-    urlMaxLen.set("bitly", 2_048);
-    const icons = [];
-    for (let [iconName, maxLen] of urlMaxLen.entries()) {
-        icons.push(`
-            <span class="icon-${iconName} ${url.length > maxLen ? 'url-too-long' : ''}"
-            title="Link length for ${iconName} is ${url.length > maxLen ? `too long
-Max length: ${maxLen}` : 'ok'}"></span>
-        `);
-    }
-    return icons.join(" ");
+const generateAppIcons = (urlLength) => {
+    return appShareSettings
+        .then(shareSettings => {
+            const icons = [];
+            for (const [share, settings] of Object.entries(shareSettings.share)) {
+                const maxLen = settings.max_chars;
+                icons.push(`
+                    <span class="icon-${share} ${urlLength > maxLen ? 'url-too-long' : ''}"
+                    title="Link length for ${settings.name} is ${urlLength > maxLen ? `too long\n`
+                    + `Max length: ${maxLen}` : 'ok'}"></span>
+                `);
+            }
+            return icons.join(' ');
+        })
+        .catch(() => {return ''});
 }
 
 // Open the "Copy" bar and select the content
@@ -308,6 +313,15 @@ const fileExtToSelectValue = (ext) => {
             }
         }
     })
+}
+
+const loadResource = (resource) => {
+    return fetch(`./resources/${resource}`)
+        .then(response => response.json())
+        .catch(error => {
+            console.log(error);
+            MicroModal.show('resource-error-modal');
+        });
 }
 
 // Only for tests purposes

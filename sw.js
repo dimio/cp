@@ -1,4 +1,4 @@
-const VERSION = '20221018';
+const VERSION = '20230724';
 const PRECACHE = 'precache-' + VERSION;
 const MODES = 'modes-' + VERSION;
 
@@ -8,6 +8,7 @@ const MODE_REGEXP = /^https:\/\/cdn\.jsdelivr.net\/npm\/codemirror@.+?\/mode\//;
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
     '/',
+    './resources',
     'script.js',
     'style.css',
     'favicon.ico',
@@ -36,7 +37,7 @@ const PRECACHE_URLS = [
     'https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu4mxK.woff2',
 ];
 
-// The install handler takes care of precaching the resources we always need.
+// The installation handler takes care of precaching the resources we always need.
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches
