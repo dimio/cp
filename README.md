@@ -46,11 +46,11 @@ Here is an example of generated code and how it looks (click on the screenshot t
         height="155"
         style="border-style: none"
         src="https://dopaste.dimio.org/?l=shll#XQAAAQATAQAAAAAAAAAyG8pmm6wx5WsfNxloo0TeG5PR3eUzyCswaDhV8aq1yi9Yey0phmBft5O/dGwF1rFgo8Aha2QuANm2TNcv9bU61gShwcqwYW1BcgS0kfYyLxbrHQ9xTY6Q17jGH76RQZKX1D7XzaAtAYzSqKbv46nM36N0Dzu1HNyiGCyMM98yYSb611cPvfJRhAZVFD7mUZGQvmXx/Lxh7hLelmA5/eFjhTtNVVABhx/ZBol/6ZlXUsGu+uc2bXZZUzskfMwCmK4hxuY0TwIvmySQ+S///Q/qwA=="
->
-</iframe>
+></iframe>
 ```
 
-[![iframe](https://github.com/dimio/dopaste/raw/images/dopaste-bash-function.png)](https://jsbin.com/pahisecixu/1/edit?html,output)
+Render preview (clickable):
+[![iframe](https://github.com/dimio/dopaste/raw/images/dopaste-bash-function.png)](https://jsbin.com/gavihuhiyu/edit?html,output)
 
 Feel free to edit the `height` and `width` attributes, so they suit your needs
 
@@ -76,19 +76,20 @@ DoPaste is great for sharing code snippets on various platforms.
 These are the maximum link lengths on some apps and browsers.
 
 | App     | Max length |
-| ------- | ---------- |
-| Reddit  | 10,000     |
-| Twitter | 4,088      |
-| Slack   | 4,000      |
-| QR Code | 2,610      |
-| Bitly   | 2,048      |
+|:--------|:----------:|
+| Reddit  |   10,000   |
+| Twitter |   4,088    |
+| Slack   |   4,000    |
+| QR Code |   2,610    |
+| Bit.ly  |   2,048    |
+| Clck.ru |   4,050    |
 
 DoPaste noty you when generated link is too long for each App.
 
 ![Link is too long](https://github.com/dimio/dopaste/raw/images/dopaste-link-length-tooltip.png)
 
 | Browser         | Max length                | Notes                                   |
-| --------------- | ------------------------- | --------------------------------------- |
+|:----------------| ------------------------- | --------------------------------------- |
 | Google Chrome   | (win) 32,779 (mac) 10,000 | Will not display, but larger links work |
 | Firefox         | >64,000                   |                                         |
 | Microsoft IE 11 | 4,043                     | Will not show more than 2,083           |

@@ -9,7 +9,7 @@
       "max_chars": 10000
     },
     "twitter": {
-      "name": "Twitter",
+      "name": "X (Twitter)",
       "max_chars": 4088
     },
     "slack": {
@@ -19,6 +19,10 @@
     "bit_ly": {
       "name": "Bit.ly",
       "max_chars": 2048
+    },
+    "clck_ru": {
+      "name": "Clck.ru (Yandex)",
+      "max_chars": 4050
     }
   }
 }
