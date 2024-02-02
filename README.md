@@ -82,7 +82,7 @@ These are the maximum link lengths on some apps and browsers.
 | Slack   |   4,000    |
 | QR Code |   2,610    |
 | Bit.ly  |   2,048    |
-| Clck.ru |   4,050    |
+| Clck.ru |   3,810    |
 
 DoPaste noty you when generated link is too long for each App.
 
