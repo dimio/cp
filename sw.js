@@ -1,4 +1,4 @@
-const VERSION = '20240131';
+const VERSION = '20240202';
 const PRECACHE = 'precache-' + VERSION;
 const MODES = 'modes-' + VERSION;
 
